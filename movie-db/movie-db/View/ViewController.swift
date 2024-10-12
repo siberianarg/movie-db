@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - UI
     
     private lazy var movieDBLabel: UILabel = {
         let label = UILabel()
@@ -33,12 +34,15 @@ class ViewController: UIViewController {
     
     var movies: [Movie] = Array(repeating: Movie(), count: 10)
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        
     }
+    
+    // MARK: - Setup UI
     
     func setupUI() {
         view.backgroundColor = .white
@@ -61,9 +65,9 @@ class ViewController: UIViewController {
             movieTableView.bottomAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
-
 }
+
+// MARK: - Data Source and Delegate
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,7 +81,5 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = movie.title
         return cell
     }
-    
-    
 }
 

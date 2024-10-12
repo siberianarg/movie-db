@@ -9,6 +9,8 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
+    // MARK: - UI
+    
     lazy var posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "movie")
@@ -37,6 +39,8 @@ class MovieTableViewCell: UITableViewCell {
         return stack
     }()
     
+    // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -45,6 +49,8 @@ class MovieTableViewCell: UITableViewCell {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setup UI
     
     func setupUI() {
         contentView.backgroundColor = .white
@@ -66,7 +72,5 @@ class MovieTableViewCell: UITableViewCell {
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
             posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -44)
         ])
-        
-        
     }
 }

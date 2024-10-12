@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2614F8752CBA3291006EBE85 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2614F8742CBA3291006EBE85 /* NetworkManager.swift */; };
 		268E22402CAFC5970017A422 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268E223F2CAFC5970017A422 /* AppDelegate.swift */; };
 		268E22422CAFC5970017A422 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268E22412CAFC5970017A422 /* SceneDelegate.swift */; };
 		268E22442CAFC5970017A422 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268E22432CAFC5970017A422 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2614F8742CBA3291006EBE85 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		268E223C2CAFC5970017A422 /* movie-db.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "movie-db.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		268E223F2CAFC5970017A422 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		268E22412CAFC5970017A422 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		268E22552CAFE55D0017A422 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2614F8742CBA3291006EBE85 /* NetworkManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2614F8752CBA3291006EBE85 /* NetworkManager.swift in Sources */,
 				268E22442CAFC5970017A422 /* ViewController.swift in Sources */,
 				268E22402CAFC5970017A422 /* AppDelegate.swift in Sources */,
 				268E22582CAFE59D0017A422 /* MovieTableViewCell.swift in Sources */,
