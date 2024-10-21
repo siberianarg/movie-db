@@ -12,34 +12,43 @@ class ViewController: UIViewController {
     // MARK: - UI
     
     private lazy var movieDBLabel: UILabel = {
-        let label = UILabel()
-        label.text = "MovieDB"
-        label.font = UIFont.systemFont(ofSize: 36, weight: .bold)
-        label.textColor = .black
-        label.backgroundColor = .white
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+        $0.text = "MovieDB"
+        $0.font = UIFont.systemFont(ofSize: 36, weight: .bold)
+        $0.textColor = .black
+        $0.backgroundColor = .white
+        $0.textAlignment = .center
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UILabel())
     
     lazy var movieTableView: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.delegate = self
-        table.dataSource = self
-        table.register(MovieTableViewCell.self, forCellReuseIdentifier: "cell")
-        table.separatorStyle = .none
-        return table
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.delegate = self
+        $0.dataSource = self
+        $0.register(MovieTableViewCell.self, forCellReuseIdentifier: "cell")
+        $0.separatorStyle = .none
+        $0.backgroundColor = .white
+        return $0
+    }(UITableView())
     
-    var movies: [Movie] = Array(repeating: Movie(), count: 10)
+    var movies: [Result] = []
 
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         setupUI()
+        apiRequest()
+        
+    }
+    
+    func apiRequest() {
+        NetworkManager.shared.loadMovie { result in
+            self.movies = result.results
+            self.movieTableView.reloadData()
+        }
     }
     
     // MARK: - Setup UI
@@ -77,7 +86,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: "cell") as! MovieTableViewCell
         let movie = movies[indexPath.row]
-        cell.posterImageView.image = movie.poster
+        NetworkManager.shared.loadImage(posterPath: movie.posterPath) { image in
+            cell.posterImageView.image = image
+        }
         cell.titleLabel.text = movie.title
         return cell
     }

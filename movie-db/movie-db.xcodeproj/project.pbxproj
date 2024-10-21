@@ -60,11 +60,11 @@
 		268E223E2CAFC5970017A422 /* movie-db */ = {
 			isa = PBXGroup;
 			children = (
+				268E223F2CAFC5970017A422 /* AppDelegate.swift */,
+				268E22412CAFC5970017A422 /* SceneDelegate.swift */,
 				268E22542CAFE5560017A422 /* Model */,
 				268E22532CAFE5440017A422 /* View */,
 				268E22552CAFE55D0017A422 /* Controller */,
-				268E223F2CAFC5970017A422 /* AppDelegate.swift */,
-				268E22412CAFC5970017A422 /* SceneDelegate.swift */,
 				268E22482CAFC5980017A422 /* Assets.xcassets */,
 				268E224A2CAFC5980017A422 /* LaunchScreen.storyboard */,
 				268E224D2CAFC5980017A422 /* Info.plist */,
