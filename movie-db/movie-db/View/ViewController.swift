@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         $0.register(MovieTableViewCell.self, forCellReuseIdentifier: "cell")
         $0.separatorStyle = .none
         $0.backgroundColor = .white
+        $0.rowHeight = 440
         return $0
     }(UITableView())
     
@@ -37,11 +38,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         setupUI()
-        apiRequest()
-        
+        apiRequest()        
     }
     
     func apiRequest() {

@@ -12,7 +12,6 @@ class MovieTableViewCell: UITableViewCell {
     // MARK: - UI
     
     lazy var posterImageView: UIImageView = {
-//        $0.image = UIImage(named: "movie")
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleToFill
         return $0
@@ -20,7 +19,6 @@ class MovieTableViewCell: UITableViewCell {
 
     lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.text = ""
         $0.textAlignment = .center
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
