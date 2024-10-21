@@ -9,33 +9,31 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
+    // MARK: - UI
+    
     lazy var posterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "movie")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleToFill
-        return imageView
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleToFill
+        return $0
+    }(UIImageView())
 
     lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.textAlignment = .center
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        return label
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textAlignment = .center
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        return $0
+    }(UILabel())
     
     lazy var stackView: UIStackView = {
         let spacing: CGFloat = 10
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.spacing = spacing
-        
-        return stack
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.axis = .vertical
+        $0.spacing = spacing
+        return $0
+    }(UIStackView())
+    
+    // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,6 +43,8 @@ class MovieTableViewCell: UITableViewCell {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setup UI
     
     func setupUI() {
         contentView.backgroundColor = .white
@@ -66,7 +66,5 @@ class MovieTableViewCell: UITableViewCell {
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
             posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -44)
         ])
-        
-        
     }
 }
