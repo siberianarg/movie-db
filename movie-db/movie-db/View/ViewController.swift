@@ -25,10 +25,9 @@ class ViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.delegate = self
         $0.dataSource = self
-        $0.register(MovieTableViewCell.self, forCellReuseIdentifier: "cell")
+        $0.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.reuseID)
         $0.separatorStyle = .none
         $0.backgroundColor = .white
-        $0.rowHeight = 440
         return $0
     }(UITableView())
     
@@ -83,7 +82,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = movieTableView.dequeueReusableCell(withIdentifier: "cell") as! MovieTableViewCell
+        let cell = movieTableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.reuseID) as! MovieTableViewCell
         let movie = movies[indexPath.row]
         NetworkManager.shared.loadImage(posterPath: movie.posterPath) { image in
             cell.posterImageView.image = image

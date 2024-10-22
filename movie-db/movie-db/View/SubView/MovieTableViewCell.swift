@@ -9,11 +9,15 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
+    static let reuseID = String(describing: MovieTableViewCell.self)
+    
     // MARK: - UI
     
     lazy var posterImageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.contentMode = .scaleToFill
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 24
         return $0
     }(UIImageView())
 
@@ -64,7 +68,8 @@ class MovieTableViewCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
-            posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -44)
+            posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -44),
+            posterImageView.heightAnchor.constraint(equalToConstant: 400)
         ])
     }
 }
