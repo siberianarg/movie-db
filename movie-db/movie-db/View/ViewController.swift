@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            movieDBLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            movieDBLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             movieDBLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 41),
             movieDBLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -41),
             movieDBLabel.heightAnchor.constraint(equalToConstant: 42),
@@ -89,6 +89,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.titleLabel.text = movie.title
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = movies[indexPath.row]
+        let vc = MovieDetailViewController()
+        vc.movieID = movie.id
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

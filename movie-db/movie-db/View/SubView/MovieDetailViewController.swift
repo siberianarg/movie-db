@@ -18,19 +18,29 @@ class MovieDetailViewController: UIViewController {
     }(UIScrollView())
     
     private lazy var posterImageView: UIImageView = {
-        $0.image = UIImage(named: "movie")
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0
     }(UIImageView())
     
     private lazy var titleLabel: UILabel = {
-        $0.text = "Uncharted"
-        $0.font = .systemFont(ofSize: 48, weight: .bold)
+        $0.font = .systemFont(ofSize: 30, weight: .bold)
+        $0.numberOfLines = 0
         $0.textColor = .black
         $0.textAlignment = .center
         return $0
     }(UILabel())
+    
+    private lazy var relizeDateLabel: UILabel = {
+        $0.font = .systemFont(ofSize: 15, weight: .medium)
+        $0.numberOfLines = 0
+        $0.textColor = .black
+        $0.textAlignment = .center
+        return $0
+    }(UILabel())
+    
+    var movieID: Int?
+    private var movieDetail: MovieDetail?
     
     // MARK: - Lifecycle
 
@@ -38,6 +48,20 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        apiCall()
+    }
+    
+    private func apiCall() {
+        guard let movieID else { return  }
+        NetworkManager.shared.loadMovieDetail(movieID: movieID) { result in
+            self.movieDetail = result
+            guard let movieDetail = self.movieDetail else { return }
+            NetworkManager.shared.loadImage(posterPath: movieDetail.posterPath!) { result in
+                self.posterImageView.image = result
+            }
+            self.titleLabel.text = movieDetail.title
+            self.relizeDateLabel.text = "Release date " + (movieDetail.releaseDate ?? "no data")
+        }
     }
     
     // MARK: - Setup UI
@@ -46,7 +70,7 @@ class MovieDetailViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(scrollView)
-        [posterImageView, titleLabel].forEach { scrollView.addSubview($0) }
+        [posterImageView, titleLabel, relizeDateLabel].forEach { scrollView.addSubview($0) }
         
         setupConstraints()
     }
@@ -65,7 +89,13 @@ class MovieDetailViewController: UIViewController {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImageView.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.height.equalTo(60)
+        }
+        
+        relizeDateLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(5)
+            $0.height.equalTo(30)
+            $0.leading.equalToSuperview().offset(16)
         }
     }
 }
